@@ -1,0 +1,29 @@
+# 忽略 node_modules 目录
+node_modules/
+
+# 忽略构建产物和临时文件
+dist/
+build/
+*.log
+*.tmp
+
+# 忽略配置文件中的敏感信息
+config.js
+.env
+
+# 忽略编辑器相关的文件和目录
+.vscode/
+.idea/
+*.sublime-*
+
+# 忽略日志文件
+*.log
+
+# 忽略备份文件
+*~
+
+# 忽略指定文件或目录
+/path/to/file.txt
+/path/to/directory/
+
+/src/conf/db.js
