@@ -49,11 +49,6 @@ const serverHandle = (req, res) => {
             })
             return;
         }
-        // const blogData = handleBlogRouter(req, res);
-        // if (blogData) {
-        //     res.end(JSON.stringify(blogData));
-        //     return;
-        // }
 
         // 处理user路由
         const userData = handleUserRouter(req, res);
