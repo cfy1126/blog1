@@ -1,5 +1,6 @@
 const querystring = require("querystring");
 const { get, set } = require('./src/db/redis');
+const { access } = require('./src/utils/log');
 const handleBlogRouter = require("./src/router/blog");
 const handleUserRouter = require("./src/router/user");
 
@@ -7,7 +8,7 @@ const handleUserRouter = require("./src/router/user");
 const getCookieExpires = () => {
     const d = new Date();
     d.setTime(d.getTime() + (24 * 60 * 60 * 1000));
-    console.log('d.toGMTString() is ', d.toGMTString());
+    // console.log('d.toGMTString() is ', d.toGMTString());
     // GMT格式
     return d.toGMTString();
 }
@@ -42,6 +43,8 @@ const getPostData = (req) => {
 };
 
 const serverHandle = (req, res) => {
+    // 记录 access log
+    access(`${req.method} -- ${req.url} -- ${req.headers['user-agent']} -- ${Date.now()}`);
     // 设置返回格式
     res.setHeader("Content-type", "application/json");
 
@@ -85,7 +88,7 @@ const serverHandle = (req, res) => {
             // 设置 session
             req.session = sessionData;
         }
-        console.log('req.session ', req.session);
+        // console.log('req.session ', req.session);
 
         // 处理 post data
         return getPostData(req);
